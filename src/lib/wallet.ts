@@ -1,9 +1,6 @@
-import { Connection, SystemProgram, Transaction, clusterApiUrl } from '@solana/web3.js';
 import { pubKey } from '../stores/signer';
 
-const network = clusterApiUrl("devnet");
-// const connection = new Connection(network);
-// const providerUrl = 'https://www.sollet.io';
+// a lot of assumptions are made in this file. needs a fixup.
 
 declare let window: any;
 
