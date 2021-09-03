@@ -1,0 +1,4 @@
+import { Writable, writable } from "svelte/store";
+
+export const provider: Writable<any> = writable(undefined);
+export const pubKey: Writable<string> = writable(undefined);
