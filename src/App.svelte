@@ -1,6 +1,10 @@
 <script lang="ts">
+	import { getBalance } from "./lib/provider";
+
 	import { connect, disconnect } from "./lib/wallet";
-	import { pubKey } from "./stores/provider";
+	import { pubKey } from "./stores/signer";
+
+	$: balance = $pubKey && getBalance($pubKey);
 
 	async function onConnect() {
 		await connect();
@@ -11,6 +15,21 @@
 	<h1>Solana, Bro.</h1>
 	{#if $pubKey}
 		<p>PubKey: {$pubKey}</p>
+
+		<p>
+			SOL Balance:
+			{#await balance}
+				...
+			{:then _balance}
+				{(_balance / 1e9).toLocaleString("en", {
+					minimumFractionDigits: 2,
+					maximumFractionDigits: 2,
+				})}
+			{:catch err}
+				{err.message}
+			{/await}
+		</p>
+
 		<button on:click={disconnect}>Disconnect</button>
 	{:else}
 		<button on:click={onConnect}>Connect</button>

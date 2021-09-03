@@ -1,5 +1,5 @@
 import { Connection, SystemProgram, Transaction, clusterApiUrl } from '@solana/web3.js';
-import { pubKey } from '../stores/provider';
+import { pubKey } from '../stores/signer';
 
 const network = clusterApiUrl("devnet");
 // const connection = new Connection(network);
@@ -38,6 +38,10 @@ function onDisconnect() {
     pubKey.set(undefined);
 }
 
-function isConnected() {
-    window.solana.isConnected()
+function isConnected(): boolean {
+    return window.solana.isConnected();
+}
+
+async function getBalance(pubKey: string) {
+    window.solana.getBalance();
 }
