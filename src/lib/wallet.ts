@@ -11,8 +11,14 @@ export async function connect() {
     let provider = getPhantom();
 
     window.solana.on("connect", onConnect);
+    window.solana.on("disconnect", onDisconnect);
 
     provider.connect();
+}
+
+export async function disconnect() {
+    let provider = getPhantom();
+    provider.disconnect();
 }
 
 // fix typing.
@@ -26,4 +32,12 @@ function getPhantom(): any {
 
 function onConnect() {
     pubKey.set(window.solana.publicKey.toString());
+}
+
+function onDisconnect() {
+    pubKey.set(undefined);
+}
+
+function isConnected() {
+    window.solana.isConnected()
 }

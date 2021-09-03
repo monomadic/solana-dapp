@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { connect } from "./lib/wallet";
+	import { connect, disconnect } from "./lib/wallet";
 	import { pubKey } from "./stores/provider";
 
 	async function onConnect() {
@@ -11,8 +11,10 @@
 	<h1>Solana, Bro.</h1>
 	{#if $pubKey}
 		<p>PubKey: {$pubKey}</p>
+		<button on:click={disconnect}>Disconnect</button>
+	{:else}
+		<button on:click={onConnect}>Connect</button>
 	{/if}
-	<button on:click={onConnect}>Connect</button>
 </main>
 
 <style>
