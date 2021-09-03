@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { getBalance } from "./lib/provider";
-
 	import { connect, disconnect } from "./lib/wallet";
 	import { pubKey } from "./stores/signer";
 
