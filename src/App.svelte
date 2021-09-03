@@ -1,24 +1,31 @@
 <script lang="ts">
-	import { Connection } from '@solana/web3.js';
+	import { Connection, PublicKey } from '@solana/web3.js';
 
 	const connection = new Connection("https://api.devnet.solana.com", "confirmed");
-	$: version = connection.getVersion();
-</script>
+	const address = "E8WesoarH3innVAri5Ctg3uYi2pyRfuoR5RxBFtdeUiu";
+	const pubKey = new PublicKey(address);
 
-<svelte:head>
-  <script>
-    global = globalThis // for solana web3 repo
-  </script>
-</svelte:head>
+	$: version = connection.getVersion();
+	$: balance = connection.getBalance(pubKey);
+</script>
 
 <main>
 	<h1>
 		Solana, Bro.
 	</h1>
+
 	{#await version}
 		<p>Getting Version...</p>
 	{:then ver}
 		<p>Core Version: {ver['solana-core']}</p>
+	{:catch err}
+		<p>Error: {err.message}</p>
+	{/await}
+
+	{#await balance}
+		<p>Getting Balance...</p>
+	{:then balance}
+		<p>SOL Balance: {(balance / 1e9).toLocaleString("en", {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>
 	{:catch err}
 		<p>Error: {err.message}</p>
 	{/await}
