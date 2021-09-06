@@ -11,9 +11,10 @@ import {
 import {
     TOKEN_PROGRAM_ID,
 } from "@solana/spl-token";
+
 import { compute_rest_props } from 'svelte/internal';
 
-const network = clusterApiUrl("devnet");
+const network = clusterApiUrl("mainnet-beta");
 const connection = new Connection(network);
 const providerUrl = 'https://www.sollet.io';
 

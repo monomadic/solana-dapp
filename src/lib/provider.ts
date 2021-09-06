@@ -1,6 +1,6 @@
 import { Connection, PublicKey, clusterApiUrl } from '@solana/web3.js';
 
-const network = clusterApiUrl("devnet");
+const network = clusterApiUrl("mainnet-beta");
 const connection = new Connection(network);
 const providerUrl = 'https://www.sollet.io';
 

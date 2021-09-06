@@ -36,9 +36,11 @@
 		{#await tokens}
 			<p>Loading tokens...</p>
 		{:then _tokens}
-			{#each _tokens as token}
-				{token.pubkey}
-			{/each}
+			<ul>
+				{#each _tokens as token}
+					<li>{token.pubkey}</li>
+				{/each}
+			</ul>
 		{:catch err}
 			{err.message}
 		{/await}
